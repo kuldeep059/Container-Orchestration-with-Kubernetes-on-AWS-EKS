@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-flask-app-deployment
+  labels:
+    app: my-flask-app
+spec:
+  replicas: 2 # Start with 2 instances (Pods)
+  selector:
+    matchLabels:
+      app: my-flask-app
+  template:
+    metadata:
+      labels:
+        app: my-flask-app
+    spec:
+      containers:
+        - name: my-flask-app-container
+          image: kuldeepsing/my-flask-app:v1 # Replace with your Docker Hub username
+          ports:
+            - containerPort: 5000
